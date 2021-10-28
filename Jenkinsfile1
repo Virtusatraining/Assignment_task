@@ -1,43 +1,45 @@
-pipeline{ 
-agent any
-    stages{
-stage('Clone sources') {
-steps {
+pipeline{
+    agent any
+stages{
+stage('Clone sources')
+{
+    steps{
         git branch: 'main', url: 'https://github.com/Virtusatraining/Assignment_task.git'
     }
 }
-        stage('create'){
-            steps{
-               sh "touch jenkinsfile.txt"
-               sh "chmod 777 jenkinsfile.txt"
-               sh "ls"
-            }
-        }
-    stage('write') {
-           steps {
-               sh "echo 'hi this is write statement' >> jenkinsfile.txt"
-           }
-    }
-    stage('read') {
-           steps {
-              sh "cat jenkinsfile.txt"
-           }
-    }
-    stage('deletecontent') {
-           steps {
-              sh "true > jenkinsfile.txt"
-           }
-    }
-    stage('check') {
-           steps {
-              sh "cat jenkinsfile.txt"
-           }
-    }
-    stage('deletefile') {
-           steps {
-              sh "rm -rf jenkinsfile.txt"
-              sh "ls"
-           }
-    }
-    }
+stage('create'){
+steps{
+sh "touch jenkinsfile.txt"
+sh "chmod 777 jenkinsfile.txt"
+sh "ls"
+}
+}
+stage('write') {
+steps {
+sh "echo 'hi this is write statement' >> jenkinsfile.txt"
+}
+}
+stage('read') {
+steps {
+sh "cat jenkinsfile.txt"
+}
+}
+stage('deletecontent') {
+steps {
+sh "true > jenkinsfile.txt"
+}
+    }
+    stage('check') {
+        steps {
+            sh "ls"
+            sh "cat jenkinsfile.txt"
+}
+}
+stage('deletefile') {
+steps {
+sh "rm -rf jenkinsfile.txt"
+sh "ls"
+}
+}
+}
 }
